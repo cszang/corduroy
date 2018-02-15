@@ -11,9 +11,9 @@
 unify_coords <- Vectorize(
   function(x) {
 
-  dd_regex <- "^[ENWOS]{0,1}\\s*([0-9]+\\.*[0-9]*)\\s*°{0,1}\\s*[ENWOS]{0,1}$"
-  dms_regex <- "^[ENWOS]{0,1}\\s*([0-9]+)\\s*°\\s*([0-9]+)\\s*[[:QUOTATION_MARK:]′]\\s*([0-9]+\\.*[0-9]*)\\s*[[:QUOTATION_MARK:]′]+\\s*[ENWOS]{0,1}$"
-  dm_regex <- "^[ENWOS]{0,1}\\s*([0-9]+)\\s*°\\s*([0-9]+\\.*[0-9]*)\\s*[[:QUOTATION_MARK:]′]\\s*[ENWOS]{0,1}$"
+  dd_regex <- "^[ENWOS]{0,1}\\s*(-{0,1}[0-9]+\\.*[0-9]*)\\s*°{0,1}\\s*[ENWOS]{0,1}$"
+  dms_regex <- "^[ENWOS]{0,1}\\s*(-{0,1}[0-9]+)\\s*°\\s*([0-9]+)\\s*[[:QUOTATION_MARK:]′]\\s*([0-9]+\\.*[0-9]*)\\s*[[:QUOTATION_MARK:]′]+\\s*[ENWOS]{0,1}$"
+  dm_regex <- "^[ENWOS]{0,1}\\s*(-{0,1}[0-9]+)\\s*°\\s*([0-9]+\\.*[0-9]*)\\s*[[:QUOTATION_MARK:]′]\\s*[ENWOS]{0,1}$"
 
   match_dms <- stringr::str_match(x, dms_regex)
   match_dm <- stringr::str_match(x, dm_regex)
