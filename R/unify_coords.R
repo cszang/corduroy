@@ -12,9 +12,11 @@ unify_coords <- Vectorize(
   function(x) {
 
   dd_regex <- "^[ENWOS]{0,1}\\s*([0-9]+\\.*[0-9]*)\\s*°{0,1}\\s*[ENWOS]{0,1}$"
-  dms_regex <- "[ENWOS]{0,1}\\s*([0-9]+)\\s*°\\s*([0-9]+)\\s*[:QUOTATION_MARK:]\\s*([0-9]+\\.*[0-9]*)\\s*[:QUOTATION_MARK:]\\s*[ENWOS]{0,1}"
+  dms_regex <- "^[ENWOS]{0,1}\\s*([0-9]+)\\s*°\\s*([0-9]+)\\s*[[:QUOTATION_MARK:]′]\\s*([0-9]+\\.*[0-9]*)\\s*[[:QUOTATION_MARK:]′]+\\s*[ENWOS]{0,1}$"
+  dm_regex <- "^[ENWOS]{0,1}\\s*([0-9]+)\\s*°\\s*([0-9]+\\.*[0-9]*)\\s*[[:QUOTATION_MARK:]′]\\s*[ENWOS]{0,1}$"
 
   match_dms <- stringr::str_match(x, dms_regex)
+  match_dm <- stringr::str_match(x, dm_regex)
   match_dd <- stringr::str_match(x, dd_regex)
 
   if (!all(is.na(match_dms))) {
@@ -23,10 +25,16 @@ unify_coords <- Vectorize(
     dms_s_part <- as.numeric(match_dms[4])
     out <- dms_d_part + dms_h_part/60 + dms_s_part/3600
   } else {
-    if (!(all(is.na(match_dd)))) {
-      out <- as.numeric(match_dd[2])
+    if (!(all(is.na(match_dm)))) {
+      dm_d_part <- as.numeric(match_dm[2])
+      dm_h_part <- as.numeric(match_dm[3])
+      out <- dm_d_part + dm_h_part/60
     } else {
-      out <- NA
+      if (!(all(is.na(match_dd)))) {
+        out <- as.numeric(match_dd[2])
+      } else {
+        out <- NA
+      }
     }
   }
   out
