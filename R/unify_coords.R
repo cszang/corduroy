@@ -1,13 +1,42 @@
 #' Unify coordinates in different format to decimal coordinates
 #'
-#' @param x a coordinate as string
+#' This function can convert from various (and mixed) coordinate specifications
+#' into the unified decimal degree format.
 #'
-#' @return a unified, numeric decimal coordinate
+#' Examples for supported formats:
+#'
+#' Degree-minute-second formats
+#'
+#' * 23°30'30''N
+#' * N 23°30'30"
+#' * 23 ° 30´ 30.521′′ N
+#' * N -23°30' 30.521"
+#'
+#' Degree-decimal-minute formats
+#'
+#' * 23°12'
+#' * 23°12.00'
+#' * 23°12.00`
+#' * 23°12,00`
+#' * N 23°12,612`
+#' * -23°12.612´S
+#'
+#' Decimal degrees
+#'
+#' * 23
+#' * 23°
+#' * 23.1
+#' * N23,1°
+#' * -23.12° N
+#'
+#' @param x coordinates as a string vector
+#'
+#' @return unified, numeric decimal coordinates
 #' @export
 #' @importFrom stringr str_match
 #'
 #' @examples
-#' unify_coords(c("49°40'46.148\"N", "E 48.232°"))
+#' unify_coords(c("49°40'46.148``N", "E 48.232°"))
 unify_coords <- Vectorize(
   function(x) {
 
@@ -17,7 +46,7 @@ unify_coords <- Vectorize(
     sign_            <- "-{0,1}"
     integer_         <- "[0-9]+"
     double_          <- "[0-9]+[\\.,]*[0-9]*"
-    minute_          <- "[[:QUOTATION_MARK:]′`´]"
+    minute_          <- "[[:QUOTATION_MARK:]`´]"
     second_          <- paste0(minute_, "{1,2}")
     whitespace_      <- "\\s*"
     start_           <- "^"

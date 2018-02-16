@@ -7,11 +7,45 @@
 unify_coords(x)
 }
 \arguments{
-\item{x}{a coordinate as string}
+\item{x}{coordinates as a string vector}
 }
 \value{
-a unified, numeric decimal coordinate
+unified, numeric decimal coordinates
 }
 \description{
-Unify coordinates in different format to decimal coordinates
+This function can convert from various (and mixed) coordinate specifications
+into the unified decimal degree format.
+}
+\details{
+Examples for supported formats:
+
+Degree-minute-second formats
+\itemize{
+\item 23°30'30''N
+\item N 23°30'30"
+\item 23 ° 30´ 30.521′′ N
+\item N -23°30' 30.521"
+}
+
+Degree-decimal-minute formats
+\itemize{
+\item 23°12'
+\item 23°12.00'
+\item 23°12.00`
+\item 23°12,00`
+\item N 23°12,612`
+\item -23°12.612´S
+}
+
+Decimal degrees
+\itemize{
+\item 23
+\item 23°
+\item 23.1
+\item N23,1°
+\item -23.12° N
+}
+}
+\examples{
+unify_coords(c("49°40'46.148``N", "E 48.232°"))
 }
