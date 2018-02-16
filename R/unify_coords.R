@@ -46,7 +46,7 @@ unify_coords <- Vectorize(
     sign_            <- "-{0,1}"
     integer_         <- "[0-9]+"
     double_          <- "[0-9]+[\\.,]*[0-9]*"
-    minute_          <- "[[:QUOTATION_MARK:]`´]"
+    minute_          <- "[[:QUOTATION_MARK:]′`´]"
     second_          <- paste0(minute_, "{1,2}")
     whitespace_      <- "\\s*"
     start_           <- "^"
