@@ -4,7 +4,10 @@ Title: Unify Coordinates to Decimal Coordinates
 Version: 0.1.0
 Author: Christian Zang
 Maintainer: Christian Zang <christian.zang@wzw.tum.de>
-Description: Unify coordinates in different format to decimal coordinates
+Description: Unify coordinates in different format to decimal coordinates. 
+    The package can convert multiple variants of 
+    degree-minute-second/degree-decimal-minute/decimal-degree coordinate 
+    specification into decimal degrees.
 License: GPL-3
 Depends: R (>= 3.1.0)
 Imports: stringr
