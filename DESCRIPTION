@@ -1,7 +1,7 @@
 Package: corduroy
 Type: Package
 Title: Unify Coordinates to Decimal Coordinates
-Version: 0.1.0
+Version: 0.2.0
 Author: Christian Zang
 Maintainer: Christian Zang <christian.zang@wzw.tum.de>
 Description: Unify coordinates in different format to decimal coordinates. 
