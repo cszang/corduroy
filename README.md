@@ -27,4 +27,12 @@ messed <- data.frame(
     "34.2"))
 
 messed$coords <- unify_coords(messed$coords)
+
+# Result:
+# > messed
+#    coords
+# 1 49.67949
+# 2 48.23200
+# 3 46.70111
+# 4 34.20000
 ```
